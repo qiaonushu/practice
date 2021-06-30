@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let per = {
+            sex: 'man', // 年龄,
+            age: 18, // 性别,
+            hobby: 'studyAndGame', // 爱好
+            speak: function () {
+                // 说话,
+                document.write(`speak方法被调用了--- <br>`)
+            },
+            eat: function () {
+                // 吃饭
+                document.write(`eat方法被调用了---`)
+            }
+        }
+
+        for (let key in per) {
+            if (typeof per[key] === 'function') {
+                per[key]()
+            } else {
+                console.log(per[key])
+            }
+        }
+    </script>
+</body>
+
+</html>
