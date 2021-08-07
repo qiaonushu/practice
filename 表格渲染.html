@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0 40px;
+        }
+
+        .con {
+            margin-bottom: 50px;
+        }
+
+        p {
+            color: #333;
+        }
+
+        .con input {
+            width: 150px;
+            height: 25px;
+        }
+
+        .con button {
+            width: 50px;
+            height: 30px;
+        }
+
+        table {
+            width: 480px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #ccc;
+        }
+
+        td,
+        th {
+            padding: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3>添加课程</h3>
+    <div class="con">课程名称：<input type="text" class="title"> 课程难度： <input type="text" class="hard"> <button
+            class="add">添加</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th width="80">序号</th>
+                <th>课程名</th>
+                <th>难度</th>
+                <th width="100">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+
+    </table>
+    <!-- <tr>
+        <td>1</td>
+        <td>HTML</td>
+        <td>初级</td>
+        <td>
+            <button>删除</button>
+        </td>
+    </tr> -->
+    <script>
+        // 点击button获取value值，创建tr追加到tbody中，创建三个td追加到tr中，将value值放入td中展示在页面，点击td中的删除按钮可以删除这个tr本身
+        // let add = document.querySelector('.add')
+        // let title = document.querySelector('.title')
+        // let hard = document.querySelector('.hard')
+        // let tb = document.querySelector('tbody')
+        // let arr = []
+        // add.addEventListener('click', function () {
+        //     if (!title.value) return
+        //     if (!hard.value) return
+        //     arr.push({
+        //         id: arr.length + 1,
+        //         class: title.value,
+        //         leave: hard.value
+        //     })
+        //     arr.forEach(function (item) {
+        //         let td = document.createElement('td')
+        //         let tr = document.createElement('tr')
+        //         for (let key in item) {
+        //             let td = document.createElement('td')
+        //             td.innerText = item[key]
+        //             tr.appendChild(td);
+        //         }
+        //         td.innerHTML = `<button>删除</button>`
+        //         tr.appendChild(td)
+        //         tb.appendChild(tr)
+
+        //     })
+        //     title.value = ''
+        //     hard.value = ''
+        // })
+        // tb.addEventListener('click', function (e) {
+        //     if (e.target.nodeName == 'BUTTON') {
+        //         let tr = e.target.parentNode.parentNode
+        //         tb.removeChild(tr)
+        //   arr.splice(e.target.id, 1)
+        //     }
+        // })
+        let title = document.querySelector('.title')
+        let hard = document.querySelector('.hard')
+        let add = document.querySelector('.add')
+        let tb = document.querySelector('tbody')
+        let arr = []
+        let str = ''
+        add.addEventListener('click', function () {
+            if (title.value && hard.value) {
+                arr.push({
+                    id: arr.length + 1,
+                    content: title.value,
+                    leave: hard.value
+                })
+                tb.innerHTML = str = ''
+                arr.forEach(item => {
+                    str += `<tr>
+                         <td>${item.id}</td>
+                         <td>${item.content}</td>
+                         <td>${item.leave}</td>
+                         <td>
+                             <button>删除</button>
+                         </td>
+                     </tr>`
+                })
+                tb.innerHTML = str
+                title.value = ''
+                hard.value = ''
+            }
+        })
+        tb.addEventListener('click', function (e) {
+            if (e.target.nodeName == 'BUTTON') {
+                let tr = e.target.parentNode.parentNode
+                tb.removeChild(tr)
+                let td = document.querySelector('tr td:first-child')
+                arr.splice(e.target.id, 1)
+            }
+            console.log(arr)
+        })
+    </script>
+</body>
+
+</html>

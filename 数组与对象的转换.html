@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.数组转对象
+    // const arr = [{
+    //     label: '男',
+    //     value: 0
+    //   },
+    //   {
+    //     label: '女',
+    //     value: 1
+    //   }
+    // ]
+
+    // function f(arr) {
+    //   return arr.reduce((sum, item) => {
+    //     sum[item['value']] = item['label']
+    //     return sum
+    //   }, {})
+    //   // reduce
+    // }
+    // const obj = f(arr) // obj ===> {0: '男', 1:'女'}
+    // console.log(obj)
+
+    // 2. 对象转数组
+    // const obj = {
+    //   0: '男',
+    //   1: '女'
+    // }
+
+    // function f(obj) {
+    //   let arr = []
+    //   for (let key in obj) {
+    //     arr.push({
+    //       label: obj[key],
+    //       value: key
+    //     })
+    //   }
+    //   return arr
+    // }
+    // const arr = f(obj) // arr ===>  [{label: '男', value: 0},{label: '女', value: 1}]
+    // console.log(arr)
+
+    // 3.数组转树
+    // 方法一
+    // let arr = [{
+    //     menuId: 1,
+    //     name: '系统1',
+    //     parentMenu: null
+    //   },
+    //   {
+    //     menuId: 2,
+    //     name: '系统1_0',
+    //     parentMenu: 1
+    //   },
+    //   {
+    //     menuId: 3,
+    //     name: '系统1_1',
+    //     parentMenu: 1
+    //   }
+    // ]
+    // function turnToTreeOfOneRoot(arr) {
+    //   if (!Array.isArray(arr)) {
+    //     throw new Error('is not array')
+    //   } else {
+    //     return arr.reduce((cur, item) => {
+    //       if (item.parentMenu == null) {
+    //         cur = {
+    //           children: [],
+    //           ...item
+    //         }
+    //       } else if (item.parentMenu == cur.menuId) {
+    //         cur.children.push(item)
+    //       }
+
+    //       return cur
+    //     }, {})
+    //   }
+    // }
+    // let newarr = turnToTreeOfOneRoot(arr)
+    // console.log(newarr)
+
+
+    // 方法二
+    var arr1 = [{
+        menuId: 1,
+        name: '系统管理1',
+        parentMenu: null
+      },
+      {
+        menuId: 2,
+        name: '系统管理1_0',
+        parentMenu: 1
+      },
+      {
+        menuId: 3,
+        name: '系统管理1_1',
+        parentMenu: 1
+      },
+      {
+        menuId: 4,
+        name: '系统管理2_0',
+        parentMenu: 2
+      }
+    ]
+
+    function turnToTreeOfOneRootPlus(arr) {
+      var obj = {}
+      arr.forEach(item => {
+        if (item.parentMenu == null) {
+          obj = item
+        }
+      })
+
+      return arr.reduce((h, m) => {
+        // 如果不是根节点
+        if (m.parentMenu) {
+          foo(h, m)
+        }
+
+        // 在obj里面为cur找到归宿
+        function foo(obj, cur) {
+          if (obj.menuId === cur.parentMenu) {
+            if (!obj.children) {
+              obj.children = []
+            }
+            obj.children.push(cur)
+          } else if (obj.children) {
+            obj.children.forEach(item => {
+              foo(item, cur)
+            })
+          }
+        }
+
+        return h
+      }, obj)
+    }
+
+    let newarr = turnToTreeOfOneRootPlus(arr1)
+    console.log(newarr)
+  </script>
+
+</body>
+
+</html>

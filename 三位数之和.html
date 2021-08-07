@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = +prompt('输入三位数'),
+            digit = num % 10,
+            decade = (num % 100 - digit) / 10,
+            hundred = (num - digit - decade * 10) / 100,
+            sum = digit + decade + hundred
+        console.log(sum)
+    </script>
+</body>
+
+</html>

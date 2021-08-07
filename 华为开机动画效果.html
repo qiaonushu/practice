@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes ani {
+            0% {
+                top: 113px
+            }
+
+            100% {
+                top: 50px
+            }
+        }
+
+        body {
+            background: #000;
+            padding-top: 2px;
+        }
+
+        .box {
+            /* display: none; */
+            position: relative;
+            top: 200px;
+            width: 200px;
+            height: 100px;
+            padding: 50px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .overflow {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            padding: 50px;
+            margin: 200px auto;
+            overflow: hidden;
+            transform: rotate(180deg);
+        }
+
+        .circle {
+            position: absolute;
+            top: 2px;
+            top: 113px;
+            background: #fff;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 10px #fff;
+            animation: ani 2s linear forwards;
+        }
+
+        .black {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 2px 4px #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="circle">
+            <div class="black"></div>
+        </div>
+    </div>
+    <div class="overflow">
+        <div class="circle">
+            <div class="black"></div>
+        </div>
+    </div>
+</body>
+
+</html>
